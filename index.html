@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olta Reçica · Data Science Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0e0e;
+    --surface: #141414;
+    --surface2: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #e8e4dc;
+    --muted: #6b6660;
+    --accent: #6b9fd4;
+    --accent2: #a8c8e8;
+    --tag-bg: #1e1e1e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 80px 60px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .header-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin-bottom: 28px;
+    white-space: nowrap;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: #ffffff;
+  }
+
+  .header-bio {
+    max-width: 520px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+
+  .header-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .header-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .header-links a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px;
+    border-top: 1px solid var(--border);
+    margin-bottom: 80px;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label span {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── PROJECTS GRID ── */
+  .projects {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px 120px;
+    display: grid;
+    gap: 2px;
+  }
+
+  /* ── PROJECT CARD ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px 44px;
+    position: relative;
+    transition: background 0.25s, border-color 0.25s;
+    animation: fadeUp 0.6s ease both;
+    cursor: default;
+  }
+
+  .card:hover {
+    background: var(--surface2);
+    border-color: #3a3a3a;
+  }
+
+  .card:hover .card-number {
+    color: var(--accent);
+  }
+
+  /* staggered animation */
+  .card:nth-child(1) { animation-delay: 0.1s; }
+  .card:nth-child(2) { animation-delay: 0.2s; }
+  .card:nth-child(3) { animation-delay: 0.3s; }
+  .card:nth-child(4) { animation-delay: 0.4s; }
+  .card:nth-child(5) { animation-delay: 0.5s; }
+  .card:nth-child(6) { animation-delay: 0.6s; }
+
+  .card-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .card-number {
+    position: absolute;
+    top: 40px;
+    right: 44px;
+    font-size: 11px;
+    color: var(--border);
+    letter-spacing: 0.1em;
+    transition: color 0.25s;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .card-left {}
+
+  .card-context {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 12px;
+  }
+
+  .card h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .card-problem {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+
+  .card-finding {
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.75;
+    padding-left: 14px;
+    border-left: 2px solid var(--accent);
+    margin-bottom: 28px;
+  }
+
+  .card-right {
+    padding-top: 4px;
+  }
+
+  .card-meta-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+
+  .tag {
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 10px;
+    padding: 4px 10px;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+  }
+
+  .card-authors {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  .card-authors strong {
+    color: #4a4a4a;
+    font-weight: 400;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: border-color 0.2s, opacity 0.2s;
+  }
+
+  .card-link:hover {
+    border-color: var(--accent);
+  }
+
+  .card-link::after {
+    content: '→';
+    transition: transform 0.2s;
+  }
+
+  .card-link:hover::after {
+    transform: translateX(3px);
+  }
+
+  .card-link.disabled {
+    color: var(--muted);
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  /* ── CARD FIGURES ── */
+  .card-figures {
+    margin-top: 36px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+  }
+
+  .card-fig {
+    display: block;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+  }
+
+  .card-fig-wide {
+    width: 62%;
+    object-fit: cover;
+  }
+
+  .card-fig-half {
+    width: 36%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .card-figures { flex-direction: column; }
+    .card-fig-wide, .card-fig-half { width: 100%; }
+  }
+
+  /* ── NIGHT LIGHTS — smaller card ── */
+  .card.card-small .card-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card.card-small .card-context {
+    color: var(--accent);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    header, .divider, .section-label, .projects, footer {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .card { padding: 28px 24px; }
+    .card-inner { grid-template-columns: 1fr; gap: 24px; }
+    .card-number { top: 28px; right: 24px; }
+    h1 { font-size: 42px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="header-label">Data Science Portfolio</p>
+  <h1>Olta <em>Reçica</em></h1>
+  <p class="header-bio">
+    I am finishing my Master's in Data Science at the Barcelona School of Economics on a fully funded scholarship. With a background in applied economics, I am particularly interested in problems related to prediction, user behavior, and language data. Through academic and independent projects, I have worked with machine learning, NLP, and spatial analysis methods across a range of domains. This portfolio includes some of my favorite projects from the past year.
+  </p>
+  <div class="header-links">
+    <a href="mailto:recicaolta@gmail.com">recicaolta@gmail.com</a>
+    <a href="https://www.linkedin.com/in/olta-recica-0504032b1" target="_blank">LinkedIn</a>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<div class="section-label">
+  <span>Selected Projects</span>
+</div>
+
+<div class="projects">
+
+  <!-- 1. THESIS -->
+  <div class="card">
+    <span class="card-number">01</span>
+    <div class="card-inner">
+      <div class="card-left">
+        <p class="card-context">Master's Thesis · Virtuleap · Enhance VR</p>
+        <h2>Early Cognitive Performance Prediction with Transformer Sequence Models</h2>
+        <p class="card-problem">
+          Can a VR cognitive training platform predict how well a user will perform by the end of a session, using only the first few minutes of gameplay?
+        </p>
+        <p class="card-finding">
+          Working with real session data from Virtuleap's Enhance VR platform, we trained a Transformer model on sequences of trial-level user behavior (reaction time, accuracy, streaks, variability) to predict final session scores early. We then tested whether the model's learned representations transfer to other games on the platform, fine-tuning with a small number of sessions from each new game rather than retraining from scratch.
+        </p>
+      </div>
+      <div class="card-right">
+        <p class="card-meta-label">Methods & Tools</p>
+        <div class="tags">
+          <span class="tag">Transformer encoder</span>
+          <span class="tag">Transfer learning</span>
+          <span class="tag">PyTorch</span>
+          <span class="tag">Attention rollout</span>
+          <span class="tag">Integrated Gradients</span>
+          <span class="tag">Ridge regression</span>
+          <span class="tag">Feature engineering</span>
+          <span class="tag">scikit-learn</span>
+        </div>
+        <div class="card-authors">
+          <strong>Authors</strong>
+          Olta Reçica, Olsa Berani, Jillian Hunter · BSE, 2026<br>
+          Data: Virtuleap (NDA)
+        </div>
+        <span class="card-link disabled">Paper in progress</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. FORECASTING -->
+  <div class="card">
+    <span class="card-number">02</span>
+    <div class="card-inner">
+      <div class="card-left">
+        <p class="card-context">Forecasting · Panel Data</p>
+        <h2>Early Warning for State-Level Unemployment Shocks</h2>
+        <p class="card-problem">
+          Can we predict whether a US state will experience an unemployment shock three months before it shows up in official data?
+        </p>
+        <p class="card-finding">
+          Built a panel dataset of 51 US states across 15 years using BLS unemployment data, macroeconomic indicators from FRED, and Google Trends search signals. Trained a Random Forest classifier using a rolling expanding-window setup to mimic real-time forecasting conditions. Because shock onsets are rare events, we evaluated models using precision-recall metrics and framed the final results around the decision costs facing state labor agencies.
+        </p>
+      </div>
+      <div class="card-right">
+        <p class="card-meta-label">Methods & Tools</p>
+        <div class="tags">
+          <span class="tag">Random Forest</span>
+          <span class="tag">Panel Data</span>
+          <span class="tag">Google Trends</span>
+          <span class="tag">Expanding-window CV</span>
+          <span class="tag">AUC-PR</span>
+          <span class="tag">Sahm Rule</span>
+          <span class="tag">BLS LAUS</span>
+          <span class="tag">FRED</span>
+        </div>
+        <div class="card-authors">
+          <strong>Authors</strong>
+          Olsa Berani, Felipe Manzi, Olta Reçica · BSE, 2026
+        </div>
+        <a class="card-link" href="papers/Forecasting_Paper.pdf" target="_blank">Read the full paper</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. NLP -->
+  <div class="card">
+    <span class="card-number">03</span>
+    <div class="card-inner">
+      <div class="card-left">
+        <p class="card-context">NLP · Text Mining</p>
+        <h2>Soft and Hard Criticism in EU Enlargement Reports</h2>
+        <p class="card-problem">
+          Does the EU use systematically harsher or softer language toward some candidate countries, and does this depend on the topic being discussed?
+        </p>
+        <p class="card-finding">
+          Scraped and segmented EU progress reports across 10 candidate countries into 26,800 paragraphs. Built a keyword dictionary distinguishing hard criticism from soft diplomatic hedging, scored each paragraph, and ran regression models with country and topic fixed effects to see what drives differences in tone beyond what each country is simply being written about.
+        </p>
+      </div>
+      <div class="card-right">
+        <p class="card-meta-label">Methods & Tools</p>
+        <div class="tags">
+          <span class="tag">Dictionary NLP</span>
+          <span class="tag">EPU-style scoring</span>
+          <span class="tag">Logistic Regression</span>
+          <span class="tag">OLS</span>
+          <span class="tag">NLTK</span>
+          <span class="tag">Snowball stemmer</span>
+          <span class="tag">Web scraping</span>
+          <span class="tag">Panel data</span>
+        </div>
+        <div class="card-authors">
+          <strong>Authors</strong>
+          Samuel Fraley, Olta Reçica, Timothy Moynihan · BSE, 2026
+        </div>
+        <a class="card-link" href="papers/NLP1_Paper.pdf" target="_blank">Read the full paper</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. GIS -->
+  <div class="card">
+    <span class="card-number">04</span>
+    <div class="card-inner">
+      <div class="card-left">
+        <p class="card-context">Geospatial Analysis · R</p>
+        <h2>Oil Infrastructure and Conflict in the Middle East</h2>
+        <p class="card-problem">
+          Do armed conflicts in the Middle East tend to happen near oil infrastructure, and if so, at what distance does that pattern become visible?
+        </p>
+        <p class="card-finding">
+          Combined conflict event data from ACLED with oil plant locations from the Global Oil and Gas Plant Tracker across 8 countries. Used buffer zones, nearest-neighbor distances, and spatial join operations in R to measure proximity between conflict and infrastructure at multiple scales, then tested whether the observed patterns were statistically meaningful or could be explained by chance.
+        </p>
+      </div>
+      <div class="card-right">
+        <p class="card-meta-label">Methods & Tools</p>
+        <div class="tags">
+          <span class="tag">R / sf</span>
+          <span class="tag">Buffer analysis</span>
+          <span class="tag">Nearest-neighbor</span>
+          <span class="tag">ACLED</span>
+          <span class="tag">GOGPT</span>
+          <span class="tag">EPSG:3857</span>
+          <span class="tag">ggplot2</span>
+          <span class="tag">Welch t-test</span>
+        </div>
+        <div class="card-authors">
+          <strong>Authors</strong>
+          Erika Blanco, Felipe Manzi, Olta Reçica, Olsa Berani · BSE, 2026
+        </div>
+        <a class="card-link" href="papers/GIS_Paper.pdf" target="_blank">Read the full paper</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. NETWORKS -->
+  <div class="card">
+    <span class="card-number">05</span>
+    <div class="card-inner">
+      <div class="card-left">
+        <p class="card-context">Network Science · Simulation</p>
+        <h2>Modeling Music Genre Diffusion in Social Networks</h2>
+        <p class="card-problem">
+          How many friends need to listen to a music genre before you adopt it yourself, and does that number differ across countries with different social network structures?
+        </p>
+        <p class="card-finding">
+          Used friendship and genre data from Deezer across Croatia, Hungary, and Romania. First characterized the structure of each network, then simulated how genres spread using a threshold contagion model: a user adopts a genre once enough of their neighbors already listen to it. Rather than fixing that threshold in advance, we calibrated it by comparing simulated genre distributions against real Spotify streaming data.
+        </p>
+      </div>
+      <div class="card-right">
+        <p class="card-meta-label">Methods & Tools</p>
+        <div class="tags">
+          <span class="tag">Linear Threshold Model</span>
+          <span class="tag">Monte Carlo</span>
+          <span class="tag">Louvain</span>
+          <span class="tag">Newman assortativity</span>
+          <span class="tag">NetworkX</span>
+          <span class="tag">GEMSEC Deezer</span>
+          <span class="tag">Small-world</span>
+          <span class="tag">Scale-free</span>
+        </div>
+        <div class="card-authors">
+          <strong>Authors</strong>
+          Daniel Campos, Samuel Fraley, Jillian Hunter, Olta Reçica · BSE, 2026
+        </div>
+        <a class="card-link" href="papers/Networks_Paper.pdf" target="_blank">Read the full paper</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. NIGHT LIGHTS -->
+  <div class="card card-small">
+    <span class="card-number">06</span>
+    <div class="card-inner">
+      <div class="card-left">
+        <p class="card-context">Portfolio Project · Remote Sensing</p>
+        <h2>A Decade of Light: Kosovo's Economic Development via Satellite</h2>
+        <p class="card-problem">
+          Using NASA satellite imagery and nighttime radiance as a proxy for economic activity, how has development spread across Kosovo's 38 municipalities from 2014 to 2025?
+        </p>
+        <p class="card-finding">
+          Pulled VIIRS DNB composites from NOAA via Google Earth Engine and built a set of visualizations: a national radiance time series, year-over-year growth charts, a regional comparison against neighboring Balkan countries, and a municipality-level choropleth mapping where Kosovo grew brightest over the decade.
+        </p>
+      </div>
+      <div class="card-right">
+        <p class="card-meta-label">Methods & Tools</p>
+        <div class="tags">
+          <span class="tag">Google Earth Engine</span>
+          <span class="tag">VIIRS DNB</span>
+          <span class="tag">Python</span>
+          <span class="tag">Time series analysis</span>
+          <span class="tag">Structural break detection</span>
+          <span class="tag">Spatial inequality</span>
+          <span class="tag">Choropleth mapping</span>
+          <span class="tag">Regional benchmarking</span>
+        </div>
+        <div class="card-authors">
+          <strong>Author</strong>
+          Olta Reçica · Independent, 2025
+        </div>
+        <span class="card-link disabled">Visual coming soon</span>
+      </div>
+    </div>
+    <div class="card-figures">
+      <img src="figures/map_comparison.png" alt="Kosovo night light comparison 2014, 2019, 2025" class="card-fig card-fig-wide">
+      <img src="figures/map_growth_choropleth.png" alt="Where Kosovo grew brightest, municipality-level night light growth 2014 to 2025" class="card-fig card-fig-half">
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span>Olta Reçica · Barcelona, 2026</span>
+  <span>MSc Data Science for Decision Making · Barcelona School of Economics</span>
+</footer>
+
+</body>
+</html>
