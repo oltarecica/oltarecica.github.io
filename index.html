@@ -532,7 +532,7 @@
           Can a VR cognitive training platform predict how well a user will perform by the end of a session, using only the first few minutes of gameplay?
         </p>
         <p class="card-finding">
-          Working with real session data from Virtuleap's Enhance VR platform, we trained a Transformer model on sequences of trial-level user behavior (reaction time, accuracy, streaks, variability) to predict final session scores early. We then tested whether the model's learned representations transfer to other games on the platform, fine-tuning with a small number of sessions from each new game rather than retraining from scratch.
+          Working with real session data from Virtuleap's Enhance VR platform, we train a Transformer model on sequences of trial-level behavioral features (reaction time, accuracy, streaks, variability) to predict final session scores from the first 25% of trials. We extend this approach via fine-tuned transfer learning across 7 cognitive games, and applied Integrated Gradients for model interpretability.
         </p>
       </div>
       <div class="card-right">
