@@ -7,15 +7,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0e0e0e;
-    --surface: #161715;
-    --surface2: #1c1e1a;
-    --border: #3d3f39;
-    --text: #e8e4dc;
-    --muted: #6b6660;
-    --accent: #606257;
-    --accent2: #999c8d;
-    --tag-bg: #20221d;
+    --bg: #efe8d8;
+    --surface: #faf7ed;
+    --surface2: #f1ebd8;
+    --border: #ddd2b5;
+    --text: #2a271e;
+    --text2: #4d4838;
+    --heading: #201d15;
+    --muted: #867c60;
+    --accent: #4f5539;
+    --accent2: #6d6a48;
+    --tag-bg: #f1ebd8;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,8 +28,8 @@
     background: var(--bg);
     color: var(--text);
     font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    font-size: 14px;
+    font-weight: 400;
+    font-size: 16px;
     line-height: 1.7;
     min-height: 100vh;
     overflow-x: hidden;
@@ -93,23 +95,23 @@
   h1 {
     font-family: 'Inter', sans-serif;
     font-size: clamp(42px, 6vw, 72px);
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.1;
     letter-spacing: -0.02em;
-    color: #ffffff;
+    color: var(--heading);
     margin-bottom: 0;
     white-space: nowrap;
   }
 
   h1 em {
     font-style: normal;
-    color: #ffffff;
+    color: var(--heading);
   }
 
   .header-bio {
     max-width: 520px;
-    color: #a8a8a0;
-    font-size: 13px;
+    color: var(--text2);
+    font-size: 15px;
     line-height: 1.8;
     margin-bottom: 32px;
   }
@@ -132,7 +134,7 @@
   }
 
   .header-links a:hover {
-    color: #ffffff;
+    color: var(--heading);
     border-color: var(--accent2);
   }
 
@@ -191,7 +193,7 @@
 
   .card:hover {
     background: var(--surface2);
-    border-color: #55584f;
+    border-color: #a3ab84;
   }
 
   .card:hover .card-number {
@@ -245,14 +247,14 @@
   }
 
   .card-problem {
-    font-size: 13px;
-    color: #a8a8a0;
+    font-size: 15px;
+    color: var(--text2);
     line-height: 1.75;
     margin-bottom: 20px;
   }
 
   .card-finding {
-    font-size: 13px;
+    font-size: 15px;
     color: var(--text);
     line-height: 1.75;
     padding-left: 14px;
@@ -282,7 +284,7 @@
   .tag {
     background: var(--tag-bg);
     border: 1px solid var(--border);
-    color: #a8a8a0;
+    color: var(--text2);
     font-size: 11px;
     padding: 4px 10px;
     letter-spacing: 0.05em;
@@ -291,19 +293,26 @@
 
   .card-authors {
     font-size: 11px;
-    color: #a8a8a0;
+    color: var(--text2);
     line-height: 1.6;
     margin-bottom: 28px;
   }
 
   .card-authors strong {
-    color: #4a4a4a;
+    color: var(--text);
     font-weight: 400;
     font-size: 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     display: block;
     margin-bottom: 4px;
+  }
+
+  .card-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
   }
 
   .card-link {
@@ -314,7 +323,7 @@
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--bg);
+    color: var(--surface);
     text-decoration: none;
     background: var(--accent2);
     border: 1px solid var(--accent2);
@@ -325,7 +334,7 @@
 
   .card-link:hover,
   .card-link:focus-visible {
-    color: #ffffff;
+    color: var(--surface);
     background: var(--accent);
     border-color: var(--accent);
     outline: none;
@@ -503,7 +512,7 @@
     <h1>Olta <em>Reçica</em></h1>
   </div>
   <p class="header-bio">
-    I am completing a fully funded Master's in Data Science at the Barcelona School of Economics. With a background in applied economics, I use data science techniques to drive decision-making. These are some of my favorite projects I've worked on so far.
+    I recently completed a fully funded Master's in Data Science at the Barcelona School of Economics. With a background in applied economics, I use data science techniques to drive decision-making. These are some of my favorite projects I've worked on so far.
   </p>
   <div class="header-links">
     <a href="mailto:recicaolta@gmail.com">recicaolta@gmail.com</a>
@@ -523,46 +532,35 @@
 
   <!-- 1. THESIS -->
   <div class="card">
-    <span class="card-number">01</span>
+    <span class="card-number">1</span>
     <div class="card-inner">
       <div class="card-left">
-        <p class="card-context">Master's Thesis · Virtuleap · Enhance VR</p>
-        <h2>Early Cognitive Performance Prediction with Transformer Sequence Models</h2>
+        <h2>Before the Buzzer: A Transformer Approach to Early Prediction and Transfer Learning in VR Cognitive Training</h2>
         <p class="card-problem">
           Can a VR cognitive training platform predict how well a user will perform by the end of a session, using only the first few minutes of gameplay?
         </p>
         <p class="card-finding">
-          Working with real session data from Virtuleap's Enhance VR platform, we train a Transformer model on sequences of trial-level behavioral features (reaction time, accuracy, streaks, variability) to predict final session scores from the first 25% of trials. We extend this approach via fine-tuned transfer learning across 7 cognitive games, and applied Integrated Gradients for model interpretability.
+          Worked with real session data from Virtuleap's Enhance VR platform, training a Transformer model on sequences of trial-level behavioral features (reaction time, accuracy, streaks, variability) to predict final session scores from the first 25% of trials. Extended the approach via fine-tuned transfer learning across 7 cognitive games, and applied Integrated Gradients for model interpretability.
         </p>
       </div>
       <div class="card-right">
-        <p class="card-meta-label">Methods & Tools</p>
-        <div class="tags">
-          <span class="tag">Transformer encoder</span>
-          <span class="tag">Transfer learning</span>
-          <span class="tag">PyTorch</span>
-          <span class="tag">Attention rollout</span>
-          <span class="tag">Integrated Gradients</span>
-          <span class="tag">Ridge regression</span>
-          <span class="tag">Feature engineering</span>
-          <span class="tag">scikit-learn</span>
+        <div class="card-links">
+          <a class="card-link" href="papers/Master_Project_Virtuleaps.pdf" target="_blank">Read the full paper</a>
         </div>
         <div class="card-authors">
           <strong>Authors</strong>
           Olta Reçica, Olsa Berani, Jillian Hunter · BSE, 2026<br>
           Data: Virtuleap (NDA)
         </div>
-        <span class="card-link disabled">Paper in progress</span>
       </div>
     </div>
   </div>
 
   <!-- 2. FORECASTING -->
   <div class="card">
-    <span class="card-number">02</span>
+    <span class="card-number">2</span>
     <div class="card-inner">
       <div class="card-left">
-        <p class="card-context">Forecasting · Panel Data</p>
         <h2>Early Warning for State-Level Unemployment Shocks</h2>
         <p class="card-problem">
           Can we predict whether a US state will experience an unemployment shock three months before it shows up in official data?
@@ -572,33 +570,24 @@
         </p>
       </div>
       <div class="card-right">
-        <p class="card-meta-label">Methods & Tools</p>
-        <div class="tags">
-          <span class="tag">Random Forest</span>
-          <span class="tag">Panel Data</span>
-          <span class="tag">Google Trends</span>
-          <span class="tag">Expanding-window CV</span>
-          <span class="tag">AUC-PR</span>
-          <span class="tag">Sahm Rule</span>
-          <span class="tag">BLS LAUS</span>
-          <span class="tag">FRED</span>
+        <div class="card-links">
+          <a class="card-link" href="papers/Forecasting_Paper.pdf" target="_blank">Read the full paper</a>
+          <a class="card-link" href="https://github.com/olsaberani/forecasting.git" target="_blank">View on GitHub</a>
         </div>
         <div class="card-authors">
           <strong>Authors</strong>
           Olta Reçica, Olsa Berani, Felipe Manzi · BSE, 2026
         </div>
-        <a class="card-link" href="papers/Forecasting_Paper.pdf" target="_blank">Read the full paper</a>
       </div>
     </div>
   </div>
 
   <!-- 3. NLP -->
   <div class="card">
-    <span class="card-number">03</span>
+    <span class="card-number">3</span>
     <div class="card-inner">
       <div class="card-left">
-        <p class="card-context">NLP · Text Mining</p>
-        <h2>Soft and Hard Criticism in EU Enlargement Reports</h2>
+        <h2>Soft and Hard Criticism in EU Progress Reports</h2>
         <p class="card-problem">
           Does the EU use systematically harsher or softer language toward some candidate countries, and does this depend on the topic being discussed?
         </p>
@@ -607,33 +596,24 @@
         </p>
       </div>
       <div class="card-right">
-        <p class="card-meta-label">Methods & Tools</p>
-        <div class="tags">
-          <span class="tag">Dictionary NLP</span>
-          <span class="tag">EPU-style scoring</span>
-          <span class="tag">Logistic Regression</span>
-          <span class="tag">OLS</span>
-          <span class="tag">NLTK</span>
-          <span class="tag">Snowball stemmer</span>
-          <span class="tag">Web scraping</span>
-          <span class="tag">Panel data</span>
+        <div class="card-links">
+          <a class="card-link" href="papers/NLP1_Paper.pdf" target="_blank">Read the full paper</a>
+          <a class="card-link" href="https://github.com/samuelfraley-bse/kosovo-nlp.git" target="_blank">View on GitHub</a>
         </div>
         <div class="card-authors">
           <strong>Authors</strong>
           Olta Reçica, Samuel Fraley, Timothy Moynihan · BSE, 2026
         </div>
-        <a class="card-link" href="papers/NLP1_Paper.pdf" target="_blank">Read the full paper</a>
       </div>
     </div>
   </div>
 
   <!-- 4. GIS -->
   <div class="card">
-    <span class="card-number">04</span>
+    <span class="card-number">4</span>
     <div class="card-inner">
       <div class="card-left">
-        <p class="card-context">Geospatial Analysis · R</p>
-        <h2>Oil Infrastructure and Conflict in the Middle East</h2>
+        <h2>Spatial Relationship Between Oil Infrastructure and Conflict in the Middle East</h2>
         <p class="card-problem">
           Do armed conflicts in the Middle East tend to happen near oil infrastructure, and if so, at what distance does that pattern become visible?
         </p>
@@ -642,33 +622,24 @@
         </p>
       </div>
       <div class="card-right">
-        <p class="card-meta-label">Methods & Tools</p>
-        <div class="tags">
-          <span class="tag">R / sf</span>
-          <span class="tag">Buffer analysis</span>
-          <span class="tag">Nearest-neighbor</span>
-          <span class="tag">ACLED</span>
-          <span class="tag">GOGPT</span>
-          <span class="tag">EPSG:3857</span>
-          <span class="tag">ggplot2</span>
-          <span class="tag">Welch t-test</span>
+        <div class="card-links">
+          <a class="card-link" href="papers/GIS_Paper.pdf" target="_blank">Read the full paper</a>
+          <a class="card-link" href="https://github.com/oltarecica/GIS/tree/main/FINAL_PROJECT" target="_blank">View on GitHub</a>
         </div>
         <div class="card-authors">
           <strong>Authors</strong>
           Olta Reçica, Erika Blanco, Felipe Manzi, Olsa Berani · BSE, 2026
         </div>
-        <a class="card-link" href="papers/GIS_Paper.pdf" target="_blank">Read the full paper</a>
       </div>
     </div>
   </div>
 
   <!-- 5. NETWORKS -->
   <div class="card">
-    <span class="card-number">05</span>
+    <span class="card-number">5</span>
     <div class="card-inner">
       <div class="card-left">
-        <p class="card-context">Network Science · Simulation</p>
-        <h2>Modeling Music Genre Diffusion in Social Networks</h2>
+        <h2>Thresholds of Taste: Modeling Music Genre Diffusion in Social Networks</h2>
         <p class="card-problem">
           How many friends need to listen to a music genre before you adopt it yourself, and does that number differ across countries with different social network structures?
         </p>
@@ -677,33 +648,49 @@
         </p>
       </div>
       <div class="card-right">
-        <p class="card-meta-label">Methods & Tools</p>
-        <div class="tags">
-          <span class="tag">Linear Threshold Model</span>
-          <span class="tag">Monte Carlo</span>
-          <span class="tag">Louvain</span>
-          <span class="tag">Newman assortativity</span>
-          <span class="tag">NetworkX</span>
-          <span class="tag">GEMSEC Deezer</span>
-          <span class="tag">Small-world</span>
-          <span class="tag">Scale-free</span>
+        <div class="card-links">
+          <a class="card-link" href="papers/Networks_Paper.pdf" target="_blank">Read the full paper</a>
         </div>
         <div class="card-authors">
           <strong>Authors</strong>
           Olta Reçica, Daniel Campos, Samuel Fraley, Jillian Hunter · BSE, 2026
         </div>
-        <a class="card-link" href="papers/Networks_Paper.pdf" target="_blank">Read the full paper</a>
       </div>
     </div>
   </div>
 
-  <!-- 6. NIGHT LIGHTS -->
-  <div class="card card-small">
-    <span class="card-number">06</span>
+  <!-- 6. BALKANS TRANSFER LEARNING -->
+  <div class="card">
+    <span class="card-number">6</span>
     <div class="card-inner">
       <div class="card-left">
-        <p class="card-context">Portfolio Project · Remote Sensing</p>
-        <h2>A Decade of Light: Kosovo's Economic Development via Satellite</h2>
+        <h2>Can Cross-Country Deep Learning Measure Subnational Development from Nightlights in the Balkans?</h2>
+        <p class="card-problem">
+          If you learn what growth looks like from satellite images in five Balkan countries, can you spot it in a sixth country the model has never seen?
+        </p>
+        <p class="card-finding">
+          Used satellite images of nighttime light as a stand-in for economic activity across the Balkans, paired with geographic features like population density, elevation, and how close an area is to infrastructure. Trained a neural network to recognize what growing areas tend to look like, then tested it on a country it had never seen. The patterns did carry over, but only loosely, and were least reliable in cities, where growth seems to follow more local, harder-to-predict forces than in rural areas.
+        </p>
+      </div>
+      <div class="card-right">
+        <div class="card-links">
+          <a class="card-link" href="papers/Nightlights_Balkans_Poster.pdf" target="_blank">Read the full poster</a>
+          <a class="card-link" href="https://github.com/oltarecica/dl-xk.git" target="_blank">View on GitHub</a>
+        </div>
+        <div class="card-authors">
+          <strong>Authors</strong>
+          Olta Reçica, Samuel Fraley · BSE, 2026
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. NIGHT LIGHTS -->
+  <div class="card card-small">
+    <span class="card-number">7</span>
+    <div class="card-inner">
+      <div class="card-left">
+        <h2>Kosovo's Economic Development via Satellite</h2>
         <p class="card-problem">
           Using NASA satellite imagery and nighttime radiance as a proxy for economic activity, how has development spread across Kosovo's 38 municipalities from 2014 to 2025?
         </p>
@@ -712,17 +699,6 @@
         </p>
       </div>
       <div class="card-right">
-        <p class="card-meta-label">Methods & Tools</p>
-        <div class="tags">
-          <span class="tag">Google Earth Engine</span>
-          <span class="tag">VIIRS DNB</span>
-          <span class="tag">Python</span>
-          <span class="tag">Time series analysis</span>
-          <span class="tag">Structural break detection</span>
-          <span class="tag">Spatial inequality</span>
-          <span class="tag">Choropleth mapping</span>
-          <span class="tag">Regional benchmarking</span>
-        </div>
         <div class="card-authors">
           <strong>Author</strong>
           Olta Reçica · Independent, 2025
@@ -744,7 +720,7 @@
 </dialog>
 
 <footer>
-  <span>Olta Reçica · Barcelona, 2026</span>
+  <span>Olta Reçica · Pristina, 2026</span>
   <span>MSc Data Science for Decision Making · Barcelona School of Economics</span>
 </footer>
 
