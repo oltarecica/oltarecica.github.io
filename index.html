@@ -449,6 +449,42 @@
     color: var(--accent);
   }
 
+  /* ── HOW I USE AI ── */
+  .ai-note {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px 120px;
+  }
+
+  .section-label-lg span {
+    font-size: 18px;
+    letter-spacing: 0.14em;
+    color: var(--text);
+  }
+
+  .ai-note-block {
+    max-width: 680px;
+  }
+
+  .ai-note-block + .ai-note-block { margin-top: 14px; }
+  .ai-note-block + .ai-note-block:has(h3) { margin-top: 28px; }
+
+  .ai-note h3 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--heading);
+    margin-bottom: 8px;
+  }
+
+  .ai-note p {
+    color: var(--text2);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .ai-note p + p { margin-top: 14px; }
+
   /* ── FOOTER ── */
   footer {
     border-top: 1px solid var(--border);
@@ -480,7 +516,7 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    header, .divider, .section-label, .projects, footer {
+    header, .divider, .section-label, .projects, .ai-note, footer {
       padding-left: 24px;
       padding-right: 24px;
     }
@@ -518,6 +554,7 @@
     <a href="https://www.linkedin.com/in/olta-reçica-0504032b1" target="_blank">LinkedIn</a>
     <a href="https://github.com/oltarecica" target="_blank">GitHub</a>
     <a href="Olta_Recica_CV.pdf" target="_blank">CV</a>
+    <a href="#how-i-use-ai">How I Use AI</a>
   </div>
 </header>
 
@@ -713,6 +750,35 @@
   </div>
 
 </div>
+
+<div class="divider"></div>
+
+<div class="section-label section-label-lg" id="how-i-use-ai">
+  <span>How I Use AI</span>
+</div>
+
+<section class="ai-note">
+  <div class="ai-note-block">
+    <h3>Where it started</h3>
+    <p>
+      I first started using AI during my Master's, as a tool to keep up with the intensity of the program. I used it to write and debug code, to brainstorm ideas for projects, and to study. I'd turn course materials into study guides and summaries, or have it quiz me before exams. One way I often used it was to generate mock exams, which I'd answer myself and then have AI score.
+    </p>
+    <p>
+      How I used it depended a lot on what I was working on. On economics projects, where I already had a feel for what a good answer looked like, I leaned on it more. When I was building deep learning pipelines, which were newer to me, I slowed down and checked things more carefully.
+    </p>
+  </div>
+  <div class="ai-note-block">
+    <h3>How I use it at work</h3>
+    <p>
+      These days I mainly use Claude Code. Before I start a new data science project, I use it to sketch out the structure and make a plan, so I have a clear picture of where things are going before I write any real code. Once I'm building, it's still there for the everyday coding and debugging.
+    </p>
+  </div>
+  <div class="ai-note-block">
+    <p>
+      I work with sensitive government data, and we're still early in building good data foundations. That makes choosing the right methods and reading the results carefully feel especially important, so those are the parts I keep for myself. AI makes me faster, but I think this kind of work needs a human touch, especially right now. I'm still figuring out the best way to work with it, and I keep exploring ways to use it more efficiently.
+    </p>
+  </div>
+</section>
 
 <dialog class="lightbox" aria-label="Enlarged project image">
   <button class="lightbox-close" type="button" aria-label="Close enlarged image">&times;</button>
